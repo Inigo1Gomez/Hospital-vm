@@ -12,9 +12,11 @@ import com.hospitalvm.cl.hospitalvm.model.Paciente;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     
-    @Query("SElECT p FROM Paciente p WHERE p.Apellido = :apellido")
+    @Query("SELECT p FROM Paciente p WHERE p.Apellido = :apellido")
     List<Paciente> buscarPorApellido(@Param("apellido") String apellido);
 
+    @Query(value = "SELECT *FROM Paciente WHERE correo = :correo", nativeQuery = true)
+    List<Paciente> buscarPorCorreo(@Param("correo") String correo);
 
 
 }
